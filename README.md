@@ -92,7 +92,7 @@ And things that are easy to get wrong:
 What worked well: the build caught most mistakes in C#, Server Actions removed the whole API
 layer, and the theme and fonts took one file.
 
-## Fonts
+## License
 
-Silkscreen and Schibsted Grotesk are under the SIL Open Font License, fetched from Google Fonts
-at build time and pinned in `src/PomodoroTasker.Web/fonts.lock.json`.
+MIT, see `LICENSE`. Silkscreen and Schibsted Grotesk are under the SIL Open Font License,
+fetched from Google Fonts at build time and pinned in `src/PomodoroTasker.Web/fonts.lock.json`.
