@@ -52,7 +52,7 @@ public sealed class HomePage : StatefulComponent
         {
             Parts.Heading(theme, T.NavToday, _view?.DayLabel),
         };
-        if (_view == null) return AppShell("/", Column(gap: Space.S4, children: [.. children]));
+        if (_view == null) return AppShell("/", Column(gap: Space.S4, children: [.. children]), big: true);
 
         var tasks = _view.Tasks;
         var done = tasks.Count(t => t.DoneAt != null);
@@ -86,7 +86,7 @@ public sealed class HomePage : StatefulComponent
             if (done == tasks.Count)
                 children.Add(new EmptyState(new Icon(LucideIcons.Sun, 32), T.TodayAllDoneTitle, T.TodayAllDoneText)
                 {
-                    Action = Button("Fechar o dia", onPressed: () => Navigator.Go("/fechar-dia")),
+                    Action = Button(T.CloseTitle, onPressed: () => Navigator.Go("/fechar-dia")),
                     SecondaryAction = Button(T.TodayPull, Variant.Outline, onPressed: () => Navigator.Go("/projetos")),
                 });
             children.Add(new TaskRows
@@ -97,9 +97,15 @@ public sealed class HomePage : StatefulComponent
             });
             if (done != tasks.Count)
                 children.Add(Row(main: MainAlign.End, children: [
-                    Button("Fechar o dia", Variant.Outline, onPressed: () => Navigator.Go("/fechar-dia")),
+                    Button(T.CloseTitle, Variant.Outline, onPressed: () => Navigator.Go("/fechar-dia")),
                 ]));
         }
-        return AppShell("/", Column(gap: Space.S4, children: [.. children]));
+        if (_editing != 0)
+            children.Add(new TaskEditor
+            {
+                TaskId = _editing,
+                OnClose = () => { SetState(() => _editing = 0); _ = Reload(); },
+            });
+        return AppShell("/", Column(gap: Space.S4, children: [.. children]), big: true);
     }
 }

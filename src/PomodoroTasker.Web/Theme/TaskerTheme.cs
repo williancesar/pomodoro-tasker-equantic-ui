@@ -61,6 +61,11 @@ public sealed class TaskerTheme : IAppTheme
         _ => Inner.Type(role),
     };
 
+    // Charts: 0 done (ink), 1 postponed or interrupted (muted), 2 pomodoros and focus (accent).
+    public DataPalette Data { get; } = new(
+        [Ink, Mute, Accent, Leaf, .. DataPalette.Default.Series.Skip(4)],
+        DataPalette.Default.Sequential, DataPalette.Default.Diverging, DataPalette.Default.Other, DataPalette.Default.Status);
+
     public ShadowSpec Elevation(int level) => Inner.Elevation(level);
     public float Shape(ShapeScale scale) => 0;
     public float DisabledOpacity => Inner.DisabledOpacity;

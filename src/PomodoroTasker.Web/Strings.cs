@@ -102,4 +102,84 @@ public static class T
     public static string NotifyDoneBody(string task, int minutes) => $"{task} ganhou um tomate. Pausa curta de {minutes} minutos.";
     public static string NotifyCycle(int every, int minutes) => $"Ciclo de {every} completo. Hora da pausa longa: {minutes} minutos.";
     public static string NotifyBreakBody(string task) => $"Próximo foco: {task}.";
+
+    // History
+    public const string HistoryTitle = "Histórico", HistoryPostponed = "adiada", HistoryUntouched = "adiada, não foi tocada";
+    public static string HistoryPomodoros(int done, int interrupted) =>
+        string.Join(", ", new[] { done > 0 ? N(done, "completo", "completos") : "", interrupted > 0 ? N(interrupted, "interrompido", "interrompidos") : "" }.Where(x => x != ""));
+    public static string HistoryFocus(string label) => $"{label} de foco";
+    public static string HistoryReason(string r) => $"motivo: {r}";
+
+    // Recurrence
+    public const string RecTitle = "Recorrência", RecNone = "Não repete", RecDefine = "Definir", RecChange = "Alterar",
+        RecDaily = "Todo dia", RecWeekly = "Dias da semana", RecWhichDays = "Em quais dias",
+        RecEveryWeeks = "A cada quantas semanas", RecEveryWeeksHint = "1 = toda semana", RecStarts = "Começa em",
+        RecPreview = "Prévia", RecPreviewPending = "A prévia aparece quando a regra estiver completa.",
+        RecPickDay = "Marque pelo menos um dia da semana.",
+        RecNoStack = "Se a ocorrência anterior ainda estiver aberta, ela continua em Hoje e nenhuma nova é criada.",
+        RecApply = "Aplicar", RecBack = "Voltar", RecRoutines = "Rotinas", RecPausedTag = "pausada",
+        RecStillOpenNote = "Nenhuma nova será criada até ela ser concluída.", RecActive = "Rotina ativa",
+        RecPaused = "Rotina pausada", RecEditRule = "Editar tarefa e regra", RecStop = "Parar de repetir",
+        RecHow = "Para criar uma rotina, abra qualquer tarefa e defina a recorrência.",
+        RecEmptyTitle = "Nada se repete ainda",
+        RecEmptyText = "Uma rotina é uma tarefa que volta para Hoje sozinha: todo dia, ou em certos dias da semana a cada tantas semanas.";
+    public static readonly string[] Weekdays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
+    public static string RecNext(string list) => $"Próximas: {list}.";
+    public static string RecCounts(int active, int paused) =>
+        $"{N(active, "ativa", "ativas")}{(paused > 0 ? $", {N(paused, "pausada", "pausadas")}" : "")}";
+    public static string RecNextOn(string label) => $"próxima: {label}";
+    public static string RecStillOpen(string label) => $"a de {label} ainda está aberta";
+
+    // Day close
+    public const string CloseTitle = "Fechar o dia", CloseBack = "Voltar", CloseDone = "feitas", CloseOpen = "abertas",
+        ClosePostponed = "adiadas", CloseOpenTitle = "Abertas", CloseOpenHint = "o que fazer com cada uma",
+        ClosePostpone = "Adiar", CloseBacklog = "Backlog", CloseDoneTitle = "Feitas",
+        CloseNothing = "Nada esteve em Hoje neste dia.", CloseClosedTitle = "Dia fechado",
+        CloseWaiting = "Esperando amanhã", CloseBackToToday = "Voltar para Hoje",
+        CloseMissedWhen = "enquanto o app estava fechado",
+        CloseMissedText = "Os registros abaixo foram gravados automaticamente. Nada foi perdido: o que estava aberto está em Hoje.",
+        CloseChanged = "O que mudou em Hoje", CloseGoToday = "Ir para Hoje";
+    public static string CloseTomatoes(int c, string focus) => $"{(c == 1 ? "tomate" : "tomates")}{(focus != "" ? $" · {focus}" : "")}";
+    public static string CloseCount(int c) => N(c, "tarefa", "tarefas");
+    public static string CloseTomorrow(int postponed) =>
+        postponed == 0 ? "Nada fica para amanhã." : postponed == 1 ? "Amanhã começa com 1 tarefa adiada." : $"Amanhã começa com {postponed} tarefas adiadas.";
+    public static string CloseDonePct(int pct) => $"{pct}% do planejado foi feito";
+    public static string ClosePostponedPct(int pct) => $"{pct}% adiado";
+    public static string CloseToBacklog(int c) =>
+        c == 1 ? "1 tarefa voltou para o backlog e não conta como adiada." : $"{c} tarefas voltaram para o backlog e não contam como adiadas.";
+    public static string CloseMissedTitle(int c) => $"{c} dias fechados";
+    public static string CloseDayLine(int done, int postponed) => $"{N(done, "feita", "feitas")} · {N(postponed, "adiada", "adiadas")}";
+
+    // Reports
+    public const string ReportsWeek = "Semana", ReportsMonth = "Mês", ReportsCustom = "Personalizado",
+        ReportsPrev = "Período anterior", ReportsNext = "Próximo período", ReportsFrom = "De", ReportsTo = "Até",
+        ReportsLast7 = "Últimos 7 dias", ReportsLast30 = "Últimos 30 dias", ReportsYear = "Este ano", ReportsAll = "Tudo",
+        ReportsRate = "taxa de conclusão", ReportsTasksDone = "tarefas feitas", ReportsPostponements = "adiamentos",
+        ReportsDoneVsPostponed = "Feitas e adiadas", ReportsPerDay = "tarefas por dia", ReportsPerWeek = "tarefas por semana",
+        ReportsDone = "Feitas", ReportsPostponed = "Adiadas",
+        ReportsWeekly = "Períodos com mais de 14 dias são agrupados por semana.", ReportsPomodoros = "Pomodoros",
+        ReportsCompleted = "Completos", ReportsInterrupted = "Interrompidos", ReportsByProject = "Foco por projeto",
+        ReportsFocus = "Minutos de foco", ReportsNoProject = "Sem projeto", ReportsActivity = "Atividade",
+        ReportsLess = "menos", ReportsMorePomodoros = "mais pomodoros", ReportsStreakNow = "dias seguidos agora",
+        ReportsStreakBest = "maior sequência", ReportsDaysWithFocus = "dias com foco",
+        ReportsStreakRule = "Um dia entra na sequência com pelo menos um pomodoro completo.",
+        ReportsMostPostponed = "Mais adiadas", ReportsInPeriodShort = "no período", ReportsStillOpen = "ainda aberta",
+        ReportsDeleted = "excluída", ReportsNone = "Nada neste período.", ReportsEmptyTitle = "Ainda não há dias fechados",
+        ReportsEmptyText = "Os relatórios nascem do registro de cada dia. O primeiro aparece amanhã, depois que o dia de hoje fechar.";
+    public static string ReportsRange(string from, string to) => $"{from} a {to}";
+    public static string ReportsBest(string label, int done, int total) => $"Melhor dia: {label}, com {done} de {total}.";
+    public static string ReportsPomodoroTotals(int completed, int interrupted) =>
+        $"{N(completed, "completo", "completos")}, {N(interrupted, "interrompido", "interrompidos")}";
+    public static string ReportsInPeriod(string label) => $"{label} no período";
+    public static string ReportsLastWeeks(int n) => $"últimas {n} semanas";
+    public static string ReportsDoneOn(string label) => $"feita {label}";
+
+    // Settings
+    public const string SettingsTimer = "Timer", SettingsFocusHint = "minutos por pomodoro", SettingsMinutes = "minutos",
+        SettingsEvery = "Pausa longa a cada", SettingsEveryHint = "pomodoros completos",
+        SettingsRunning = "Um timer está rodando. As novas durações valem a partir da próxima fase.",
+        SettingsAppearance = "Aparência", SettingsTheme = "Tema", SettingsData = "Dados", SettingsDatabase = "Banco local";
+    public static readonly string[] SettingsThemes = ["Seguir o sistema", "Claro", "Escuro"];
+    public static string SettingsAbout(string version) =>
+        $"pomodoro-tasker (eQuantic UI) {version}. Os dados ficam no banco SQLite deste servidor; nada é enviado para fora.";
 }

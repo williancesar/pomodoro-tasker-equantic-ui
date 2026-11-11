@@ -8,14 +8,18 @@ namespace PomodoroTasker.Web;
 /// <summary>The frame every page sits in: the black rail, the timer block, then the screen.</summary>
 public sealed class AppShell : StatelessComponent
 {
-    public AppShell(string route, VisualNode child)
+    public AppShell(string route, VisualNode child, bool big = false)
     {
         Route = route;
         Child = child;
+        Big = big;
     }
 
+    /// <summary>The section of the rail this page belongs to.</summary>
     public string Route { get; init; }
     public VisualNode Child { get; init; }
+    /// <summary>The full timer block, as on Hoje; otherwise the strip.</summary>
+    public bool Big { get; init; }
 
     private static readonly (string Href, string Label, IconGlyph Icon)[] Sections =
     [
@@ -43,22 +47,26 @@ public sealed class AppShell : StatelessComponent
     {
         var theme = context.Theme;
 
-        var rail = Box(new BoxStyle { Width = 64, Height = SizeValue.Fill, Background = TaskerTheme.Block, Padding = EdgeInsets.All(Space.S2) },
+        // The page scrolls as a whole; the rail and the timer stay where they are.
+        var rail = new Pinned(Box(new BoxStyle
+        {
+            Width = 64, Height = SizeValue.WindowMinus(0), Background = TaskerTheme.Block, Padding = EdgeInsets.All(Space.S2),
+        },
             Column(gap: Space.S2, children: [
                 .. Sections.Select(s => Entry(s.Href, s.Label, s.Icon)),
                 Spacer(),
                 Entry("/configuracoes", T.NavSettings, LucideIcons.SlidersHorizontal),
-            ]));
+            ])));
 
-        return Box(new BoxStyle { Width = SizeValue.Fill, Height = SizeValue.Fill, Background = theme.Background },
-            Row(gap: 0, cross: CrossAlign.Stretch, children: [
+        return Box(new BoxStyle { Width = SizeValue.Fill, MinHeight = 0, Background = theme.Background },
+            Row(gap: 0, cross: CrossAlign.Start, children: [
                 rail,
                 Flexible(Column(gap: 0, children: [
-                    new TimerBlock { Big = Route == "/" },
-                    Flexible(ScrollView(Box(new BoxStyle
+                    new Pinned(new TimerBlock { Big = Big }),
+                    Box(new BoxStyle
                     {
                         Width = SizeValue.Fill, MaxWidth = 760, Padding = EdgeInsets.All(Space.S6),
-                    }, Child))),
+                    }, Child),
                 ])),
             ]));
     }

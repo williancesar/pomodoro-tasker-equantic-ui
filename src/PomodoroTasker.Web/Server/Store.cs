@@ -7,8 +7,10 @@ namespace PomodoroTasker.Web.Server;
 [ServerOnly]
 public static class Store
 {
-    private static readonly Lazy<Db> Lazy = new(() =>
-        new Db(Environment.GetEnvironmentVariable("TASKER_DB") ?? "tasker.db"));
+    /// <summary>The database file: TASKER_DB, or tasker.db where the server runs.</summary>
+    public static string Path => Environment.GetEnvironmentVariable("TASKER_DB") ?? "tasker.db";
+
+    private static readonly Lazy<Db> Lazy = new(() => new Db(Path));
 
     public static Db Db => Lazy.Value;
 }
