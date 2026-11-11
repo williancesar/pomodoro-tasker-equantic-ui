@@ -1,5 +1,5 @@
 bin/
 obj/
-wwwroot/_equantic/
+**/wwwroot/_equantic/
 *.db
 *.db-*
