@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/PomodoroTasker.Core/PomodoroTasker.Core.csproj" />
+    <Project Path="src/PomodoroTasker.Web/PomodoroTasker.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/PomodoroTasker.Core.Tests/PomodoroTasker.Core.Tests.csproj" />
+  </Folder>
+</Solution>

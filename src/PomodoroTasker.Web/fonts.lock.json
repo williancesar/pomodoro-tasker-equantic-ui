@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "google": {
+    "Schibsted Grotesk": {
+      "400": {
+        "url": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/JqzK5SSPQuCQF3t8uOwiUL-taUTtarVKQ9vZ6pJJWlMNIsEATw.ttf",
+        "sha256": "357651a7214aa7f518688f3f0deefff8432890825336a75df64185fc3103c965"
+      },
+      "600": {
+        "url": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/JqzK5SSPQuCQF3t8uOwiUL-taUTtarVKQ9vZ6pJJWlMN_MYATw.ttf",
+        "sha256": "5ae8a45dcff8a321e7866fc7b38d31bd9f209bfb20df63272bdff14b5235af18"
+      },
+      "700": {
+        "url": "https://fonts.gstatic.com/s/schibstedgrotesk/v7/JqzK5SSPQuCQF3t8uOwiUL-taUTtarVKQ9vZ6pJJWlMNxcYATw.ttf",
+        "sha256": "74fbc0e987983c4b482ba4dd789eac8e95590dc2d94a2dfecfebd5cb31bdea81"
+      }
+    },
+    "Silkscreen": {
+      "400": {
+        "url": "https://fonts.gstatic.com/s/silkscreen/v6/m8JXjfVPf62XiF7kO-i9ULQ.ttf",
+        "sha256": "734e6faa40fb5566327330d5b9b6e52fcc5d52ee91f0da1fe696ca33c5f7d258"
+      },
+      "700": {
+        "url": "https://fonts.gstatic.com/s/silkscreen/v6/m8JUjfVPf62XiF7kO-i9aAhATms.ttf",
+        "sha256": "48f0553c450ff368e7f5db2288ca3d9faadd8b230671f2ca9d2f016f6e274676"
+      }
+    }
+  }
+}

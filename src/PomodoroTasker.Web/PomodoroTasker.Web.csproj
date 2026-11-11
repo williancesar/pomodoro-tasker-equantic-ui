@@ -1,0 +1,14 @@
+<Project Sdk="eQuantic.UI.Sdk">
+
+  <!-- The SDK version lives in global.json (msbuild-sdks). -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../PomodoroTasker.Core/PomodoroTasker.Core.csproj" />
+  </ItemGroup>
+
+</Project>
