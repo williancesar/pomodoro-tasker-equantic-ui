@@ -11,4 +11,8 @@
     <ProjectReference Include="../PomodoroTasker.Core/PomodoroTasker.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="eQuantic.UI.Lucide" Version="0.2.0-preview.68" />
+  </ItemGroup>
+
 </Project>

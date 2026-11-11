@@ -24,6 +24,9 @@ public sealed record TimerState
 /// <summary>Minutes, and how many pomodoros make a cycle.</summary>
 public sealed record Durations(int Focus = 25, int Short = 5, int Long = 15, int Every = 4);
 
+/// <summary>User settings, stored as one JSON value under "prefs".</summary>
+public sealed record Prefs(int Focus = 25, int Short = 5, int Long = 15, int Every = 4, string Theme = "auto");
+
 public enum TimerEvent { Start, Pause, Resume, Stop, Finish, Skip, Expire }
 
 public sealed record PomodoroRecord(int TaskId, long StartedAt, long EndedAt, int Seconds, string Status, string Reason);

@@ -50,6 +50,16 @@ public sealed class TaskItem
     public string? ProjectName { get; set; }
     public string? ParentTitle { get; set; }
     public List<TaskItem> Subs { get; set; } = [];
+
+    // Display values the server fills for a screen; no column holds them.
+    public bool InToday { get; set; }
+    public string? Where { get; set; }
+    public string? RuleText { get; set; }
+    public string? DeadlineText { get; set; }
+    public bool DeadlineLate { get; set; }
+    public string? PlannedText { get; set; }
+    public int Toms { get; set; }
+    public int TomsInterrupted { get; set; }
 }
 
 public sealed class ListOption

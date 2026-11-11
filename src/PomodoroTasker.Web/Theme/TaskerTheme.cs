@@ -25,6 +25,7 @@ public sealed class TaskerTheme : IAppTheme
     public static readonly ColorToken Block = Pair(0x0D0D0D, 0x000000);
     public static readonly ColorToken BlockInk = Pair(0xF2F0EA, 0xF2F0EA);
     public static readonly ColorToken BlockMute = Pair(0xD5D2CA, 0xD5D2CA);
+    public static readonly ColorToken LeafOnBlock = Pair(0x5FD06E, 0x5FD06E);
 
     public ColorToken Background => Paper;
     public ColorToken Surface => Field;
